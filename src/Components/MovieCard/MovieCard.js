@@ -1,15 +1,36 @@
-import React from 'react';
-import './MovieCard.css';
+import React,{Component} from 'react';
+import MoviePoster from './MoviePoster';
+import MovieSummary from './MovieSummary';
+class MovieCard extends Component{
+  state={
+    showPoster:true
+  }
+  MovieCardHandler=()=>{
+    const iscard=this.state.showPoster;
+    this.setState({
+      showPoster:!iscard
+    })
+  }
 
-const MovieCard=(props)=>{
-  return(
-    <div>
-    <img className='moviePoster' src={props.imagesrc}/>
+  render(){
+    let movieCard=null;
+    if(this.state.showPoster){
+      movieCard=<MoviePoster imagesrc={this.props.imagesrc}
+        title={this.props.title}></MoviePoster>
+    }else{
+      movieCard=<MovieSummary
+        imdb={this.props.imdb}></MovieSummary>
+    }
 
-    <h1>{props.title}</h1>
-
+    return (
+    <div onClick={this.MovieCardHandler}>
+      {movieCard}
     </div>
-  );
+    );
+
+  }
+
+
 }
 
 export default MovieCard;

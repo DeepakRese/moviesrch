@@ -6,6 +6,7 @@ const MovieList=(props)=>props.movieList.map((movie)=>{
     <MovieCard
     title={movie.Title}
     imagesrc={movie.Poster}
+    imdb={movie.imdbID}
     />
   )
 })
